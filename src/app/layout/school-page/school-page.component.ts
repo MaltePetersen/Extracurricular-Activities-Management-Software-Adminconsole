@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-school-page',
@@ -10,7 +12,10 @@ import { routerTransition } from '../../router.animations';
 
 })
 export class SchoolPageComponent implements OnInit {
-    constructor() {}
+    constructor(public http: HttpClient) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+     
+        this.http.get(`${environment.apiUrl}/api/schools`).subscribe((a) => console.log(a));
+    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthenticationService } from '../shared/services/authentication-service.service';
 
 @Component({
     selector: 'app-login',
@@ -12,15 +13,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginComponent implements OnInit {
     constructor(
         public router: Router,
-        public http: HttpClient
+        public http: HttpClient,
+        public auth: AuthenticationService
     ) { }
     userName: string;
     password: string;
     ngOnInit() {
-        this.http.get
     }
 
     onLoggedin() {
+        this.auth.login(this.userName, this.password).subscribe((auth) => {
+            if (auth)
+                this.router.navigateByUrl('dashboard');
+        });
+        /* 
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -34,6 +40,6 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('dashboard');
             }
         }
-        );
+        );*/
     }
 }

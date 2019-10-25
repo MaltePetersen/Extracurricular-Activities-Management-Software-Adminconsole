@@ -5,7 +5,7 @@ import { SchoolPageComponent } from './school-page.component';
 import { SchoolPageRoutingModule } from './school-page-routing.module';
 
 @NgModule({
-    imports: [CommonModule, PageHeaderModule, SchoolPageRoutingModule],
+    imports: [CommonModule, PageHeaderModule,  SchoolPageRoutingModule],
     declarations: [SchoolPageComponent]
 })
 export class SchoolPageModule {}
