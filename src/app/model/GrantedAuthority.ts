@@ -1,0 +1,3 @@
+class GrantedAuthority{
+    authority: string;
+}
