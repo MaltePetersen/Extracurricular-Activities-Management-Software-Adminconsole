@@ -14,8 +14,9 @@ export class AuthenticationService {
     if (localStorage.getItem('isLoggedin')) {
       this.currentUserSubject = new BehaviorSubject<ManagementDTO>(JSON.parse(localStorage.getItem('isLoggedin')));
       this.currentUser = this.currentUserSubject.asObservable();
-    }
+    } else {
     this.currentUserSubject = new BehaviorSubject<ManagementDTO>(null);
+    }
   }
   public get currentUserValue(): ManagementDTO {
     return this.currentUserSubject.value;
