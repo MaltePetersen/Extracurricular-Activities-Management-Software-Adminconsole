@@ -53,6 +53,9 @@
                 <th scope="col">EndZeit</th>
                 <th scope="col">Schule</th>
                 <th scope="col">Betreuer</th>
+                <th scope="col">Ändern</th>
+                <th scope="col">Löschen</th>
+
             </tr>
         </thead>
         <tbody>
@@ -64,6 +67,9 @@
                 <td>{{ afterSchoolCare.endTime }}</td>
                 <td>{{afterSchoolCare.participatingSchool.name}}</td>
                 <td> {{ afterSchoolCare.employee }}</td>
+                <td><button class="btn btn-warning" (click)="patchById(afterSchoolCare.id)">Ändern</button></td>
+                <td><button class="btn btn-danger" (click)="deleteById(afterSchoolCare.id)">Löschen</button></td>
+
             </tr>
         </tbody>
     </table>

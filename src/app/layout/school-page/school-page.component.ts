@@ -16,12 +16,9 @@ import { SchoolDTO } from 'src/app/model/SchoolDTO.model';
 export class SchoolPageComponent implements OnInit {
     constructor(public http: HttpClient) { }
     schools: School[];
-    model: SchoolDTO = new SchoolDTO('name', 'addresse', 'email', 'phoneNumber');
+    model: SchoolDTO = new SchoolDTO('', '', '', '');
     ngOnInit() {
         this.getAllSchools();
-    }
-    newSchool() {
-        this.model = new School(2, 'fwe', 'addrgergwesse', 'emDQWFail', 'phoneNuDWQmber');
     }
     onSubmit() {
         this.http.post<SchoolDTO>(`${environment.apiUrl}/api/schools`, this.model).subscribe(() => this.getAllSchools());
