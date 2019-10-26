@@ -1,4 +1,26 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Betreungsangebote'" [icon]="'fa-table'"></app-page-header>
-    <label>{{testString}}</label>
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">AnfangsZeit</th>
+                <th scope="col">EndZeit</th>
+                <th scope="col">Schule</th>
+                <th scope="col">Betreuer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let afterSchoolCare of afterSchoolCares">
+                <td>
+                    {{ afterSchoolCare.id }}
+                </td>
+                <td>{{ afterSchoolCare.startTime  }}</td>
+                <td>{{ afterSchoolCare.endTime }}</td>
+                <td>{{afterSchoolCare.participatingSchool.name}}</td>
+                <td> {{ afterSchoolCare.employee }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Care } from 'src/app/model/Care.model';
 
 @Component({
     selector: 'app-care-page',
@@ -13,8 +14,8 @@ import { environment } from 'src/environments/environment';
 })
 export class CarePageComponent implements OnInit {
     constructor(public http: HttpClient) {}
-    testString: string;
+    afterSchoolCares: Care[];
     ngOnInit() {
-        this.http.get(`${environment.apiUrl}/api/after_school_cares`).subscribe((afterSchoolCare) => this.testString = JSON.stringify(afterSchoolCare));
+        this.http.get<Care[]>(`${environment.apiUrl}/api/after_school_cares`).subscribe((afterSchoolCare) => this.afterSchoolCares = afterSchoolCare);
     }
 }

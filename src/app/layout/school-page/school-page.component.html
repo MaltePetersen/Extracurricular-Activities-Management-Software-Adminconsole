@@ -1,4 +1,28 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Schulenverwaltung'" [icon]="'fa-graduation-cap'"></app-page-header>
-    <label>{{testString}}</label>    
+    
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Schule</th>
+        <th scope="col">Addresse</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefonnummer</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let school of schools">
+        <td>
+          {{ school.id }}
+        </td>
+        <td>{{ school.name }}</td>
+        <td>{{ school.address }}</td>
+        <td>{{ school.email }}</td>
+        <td>{{ school.phoneNumber }}</td>
+      </tr>
+      </tbody>
+    </table>
 </div>
