@@ -56,6 +56,7 @@
                         <th scope="col">Addresse</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefonnummer</th>
+                        <th scope="col">Löschen</th>
 
                     </tr>
                 </thead>
@@ -68,6 +69,7 @@
                         <td>{{ school.address }}</td>
                         <td>{{ school.email }}</td>
                         <td>{{ school.phoneNumber }}</td>
+                        <td><button class="btn btn-danger" (click)="deleteSchoolById(school.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

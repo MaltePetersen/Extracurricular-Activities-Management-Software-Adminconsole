@@ -20,7 +20,6 @@ export class SchoolPageComponent implements OnInit {
     ngOnInit() {
         this.getAllSchools();
     }
-    get diagnostic() { return JSON.stringify(this.model); }
     newSchool() {
         this.model = new School(2, 'fwe', 'addrgergwesse', 'emDQWFail', 'phoneNuDWQmber');
     }
@@ -29,6 +28,12 @@ export class SchoolPageComponent implements OnInit {
     }
     getAllSchools() {
         this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((schools) => this.schools = schools);
+    }
+    deleteSchoolById(id: number){
+        this.http.delete<number>(`${environment.apiUrl}/api/schools/${id}`).subscribe(() => this.getAllSchools());
+    }
+    patchSchoolById(id: number, school: School){
+        this.http.patch<School>(`${environment.apiUrl}/api/schools/${id}`,school).subscribe(() => this.getAllSchools());
     }
 
 }
