@@ -3,6 +3,7 @@ import { routerTransition } from '../../router.animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { School } from 'src/app/model/School.model';
+import { SchoolDTO } from 'src/app/model/SchoolDTO.model';
 
 @Component({
     selector: 'app-school-page',
@@ -15,7 +16,19 @@ import { School } from 'src/app/model/School.model';
 export class SchoolPageComponent implements OnInit {
     constructor(public http: HttpClient) { }
     schools: School[];
+    model: SchoolDTO = new SchoolDTO('name', 'addresse', 'email', 'phoneNumber');
     ngOnInit() {
-        this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((a) => this.schools = a);
+        this.getAllSchools();
     }
+    get diagnostic() { return JSON.stringify(this.model); }
+    newSchool() {
+        this.model = new School(2, 'fwe', 'addrgergwesse', 'emDQWFail', 'phoneNuDWQmber');
+    }
+    onSubmit() {
+        this.http.post<SchoolDTO>(`${environment.apiUrl}/api/schools`, this.model).subscribe(() => this.getAllSchools());
+    }
+    getAllSchools() {
+        this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((schools) => this.schools = schools);
+    }
+
 }
