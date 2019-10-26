@@ -1,5 +1,50 @@
 <div [@routerTransition]>
     <app-page-header [heading]="'Betreungsangebote'" [icon]="'fa-table'"></app-page-header>
+    <div class="row">
+            <div class="col-lg-6">    
+                    <div class="container">
+                            <h1>Neue Nachmittagsbetreuung hinzufügen</h1>
+                            <form #careForm="ngForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label for="startTime">Anfangszeit</label>
+                                    <input type="number" class="form-control" name="startTime" id="startTime" [(ngModel)]="model.startTime" required
+                                        #startTime="ngModel">
+                                    <div [hidden]="startTime.valid || startTime.pristine" class="alert alert-danger">
+                                        Anfangszeit wird benötigt
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="endTime">EndZeit</label>
+                                    <input type="number" class="form-control" name="endTime" [(ngModel)]="model.endTime" id="endTime"
+                                        required #endTime="ngModel">
+                                    <div [hidden]="endTime.valid || endTime.pristine" class="alert alert-danger">
+                                            EndZeit wird benötigt
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="school">Schule</label>
+                                    <input type="text" class="form-control" name="school" [(ngModel)]="model.school" id="school"
+                                        required #school="ngModel">
+                                    <div [hidden]="school.valid || school.pristine" class="alert alert-danger">
+                                        Schule wird benötigt
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="employee">Betreuer</label>
+                                    <input type="text" class="form-control" name="employee" [(ngModel)]="model.employee"
+                                        id="employee" required #employee="ngModel">
+                                    <div [hidden]="employee.valid || employee.pristine" class="alert alert-danger">
+                                            Betreuer wird benötigt
+                                    </div>
+                                </div>
+            
+                                <button type="submit" class="btn btn-success" [disabled]="!careForm.form.valid">Submit</button>
+            
+                            </form>
+                        </div>
+            </div>
+            <div class="col-lg-6">    
     <table class="table table-striped">
         <thead>
             <tr>
@@ -22,5 +67,6 @@
             </tr>
         </tbody>
     </table>
-
+</div>
+</div>
 </div>
