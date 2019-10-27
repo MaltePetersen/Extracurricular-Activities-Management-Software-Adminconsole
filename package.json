@@ -2,6 +2,9 @@
   "name": "sb-admin-bs4-angular-8",
   "version": "8.0.0",
   "license": "Apache",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
