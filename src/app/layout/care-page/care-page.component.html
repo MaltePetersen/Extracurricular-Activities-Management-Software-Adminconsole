@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="school">Schule</label>
-                                    <input type="text" class="form-control" name="school" [(ngModel)]="model.school" id="school"
+                                    <input type="text" class="form-control" name="school" [(ngModel)]="model.participatingSchool" id="school"
                                         required #school="ngModel">
                                     <div [hidden]="school.valid || school.pristine" class="alert alert-danger">
                                         Schule wird benötigt
