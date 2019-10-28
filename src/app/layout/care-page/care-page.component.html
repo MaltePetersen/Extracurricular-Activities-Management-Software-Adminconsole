@@ -4,7 +4,7 @@
             <div class="col-lg-6">    
                     <div class="container">
                             <h1>Neue Nachmittagsbetreuung hinzufügen</h1>
-                            <form #careForm="ngForm" (ngSubmit)="onSubmit()">
+                            <form #careForm="ngForm" (ngSubmit)="onSubmit(); careForm.reset()">
                                 <div class="form-group">
                                     <label for="startTime">Anfangszeit</label>
                                     <input type="number" class="form-control" name="startTime" id="startTime" [(ngModel)]="model.startTime" required
