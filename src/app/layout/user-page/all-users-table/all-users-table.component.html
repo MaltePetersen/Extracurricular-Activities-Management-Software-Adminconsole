@@ -1,51 +1,33 @@
 <app-page-header [heading]="'Benutzerverwaltung'" [icon]="'fa-users'"></app-page-header>
 <table class="table table-responsive">
-  <thead>
-      <tr>
-          <th scope="col">id</th>
-          <th scope="col">username</th>
-          <th scope="col">password</th>
-          <th scope="col">fullname</th>
-          <th scope="col">role</th>
-          <th scope="col">email</th>
-          <th scope="col">address</th>
-          <th scope="col">phonenumber</th>
-          <th scope="col">iban</th>
-          <th scope="col">schoolClass</th>
-          <th scope="col">employeesSchools</th>
-          <th scope="col">schoolCoordinatorsSchools</th>
-          <th scope="col">childSchool</th>
-          <th scope="col">verified</th>
-          <th scope="col">authorities</th>
-          <th scope="col">enabled</th>
-          <th scope="col">accountNonExpired</th>
-          <th scope="col">accountNonLocked</th>
-          <th scope="col">credentialsNonExpired</th>
-
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let user of users">
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.password }}</td>
-          <td>{{ user.fullname }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.phonenumber }}</td>
-          <td>{{ user.iban }}</td>
-          <td>{{ user.schoolClass }}</td>
-          <td>{{ user.employeesSchools }}</td>
-          <td>{{ user.schoolCoordinatorsSchools }}</td>
-          <td>{{ user.childSchool }}</td>
-          <td>{{ user.verified }}</td>
-          <td>{{ user.authorities }}</td>
-          <td>{{ user.enabled }}</td>
-          <td>{{ user.accountNonExpired }}</td>
-          <td>{{ user.accountNonLocked }}</td>
-          <td>{{ user.credentialsNonExpired }}</td>
-
-      </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">usertype</th>
+            <th scope="col">username</th>
+            <th scope="col">password</th>
+            <th scope="col">email</th>
+            <th scope="col">fullname</th>
+            <th scope="col">phoneNumber</th>
+            <th scope="col">subject</th>
+            <th scope="col">iban</th>
+            <th scope="col">address</th>
+            <th scope="col">schoolClass</th>
+            <th scope="col">isSchoolCoordinator</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.userType }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.fullname }}</td>
+            <td>{{ user.phoneNumber }}</td>
+            <td>{{ user.subject }}</td>
+            <td>{{ user.iban }}</td>
+            <td>{{ user.address }}</td>
+            <td>{{ user.schoolClass }}</td>
+            <td>{{ user.isSchoolCoordinator }}</td>
+        </tr>
+    </tbody>
 </table>
