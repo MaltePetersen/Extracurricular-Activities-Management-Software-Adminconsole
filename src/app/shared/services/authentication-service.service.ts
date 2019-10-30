@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ManagementDTO} from 'src/app/model/ManagementDTO.model';
+import { ManagementDTO } from 'src/app/model/ManagementDTO.model';
+import { GrantedAuthority } from 'src/app/model/GrantedAuthority.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -15,7 +16,7 @@ export class AuthenticationService {
       this.currentUserSubject = new BehaviorSubject<ManagementDTO>(JSON.parse(localStorage.getItem('isLoggedin')));
       this.currentUser = this.currentUserSubject.asObservable();
     } else {
-    this.currentUserSubject = new BehaviorSubject<ManagementDTO>(null);
+      this.currentUserSubject = new BehaviorSubject<ManagementDTO>(null);
     }
   }
   public get currentUserValue(): ManagementDTO {
@@ -30,7 +31,7 @@ export class AuthenticationService {
         'Authorization': 'Basic ' + user.authData
       })
     };
-    return this.http.get<any>(`${environment.apiUrl}/login`, httpOptions)
+    return this.http.get<string[]>(`${environment.apiUrl}/login`, httpOptions)
       .pipe(map(authorities => {
         if (authorities.includes('ROLE_MANAGEMENT')) {
           this.currentUserSubject.next(user);
