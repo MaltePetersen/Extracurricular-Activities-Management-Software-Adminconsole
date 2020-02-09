@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://backend.softwareprojekt-kiel.de/'
+  apiUrl: 'https://backend.softwareprojekt-kiel.de'
 };
 
 /*

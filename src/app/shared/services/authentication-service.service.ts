@@ -31,7 +31,7 @@ export class AuthenticationService {
         'Authorization': 'Basic ' + user.authData
       })
     };
-    return this.http.get<string[]>(`${environment.apiUrl}/login`, httpOptions)
+    return this.http.get<string[]>(`${environment.apiUrl}/user/login`, httpOptions)
       .pipe(map(authorities => {
         if (authorities.includes('ROLE_MANAGEMENT')) {
           this.currentUserSubject.next(user);
