@@ -38,6 +38,11 @@ export class AuthenticationService {
           localStorage.setItem('isLoggedin', JSON.stringify(user));
           return true;
         }
+        if (authorities.includes('ROLE_SCHOOLCOORDINATOR')) {
+          this.currentUserSubject.next(user);
+          localStorage.setItem('isLoggedin', JSON.stringify(user));
+          return true;
+        }
         return false;
       }));
   }
