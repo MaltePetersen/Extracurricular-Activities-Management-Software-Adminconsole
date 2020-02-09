@@ -31,14 +31,14 @@ export class CarePageComponent implements OnInit {
         console.log('Backend functionality missing');
     }
     getAllAfterSchoolCares() {
-        this.http.get<Care[]>(`${environment.apiUrl}/api/after_school_cares`).subscribe((afterSchoolCares) => this.afterSchoolCares = afterSchoolCares);
+        this.http.get<Care[]>(`${environment.apiUrl}/api/management/afterSchoolCare`).subscribe((afterSchoolCares) => this.afterSchoolCares = afterSchoolCares);
 
     }
     deleteById(id: number) {
-        this.http.delete<number>(`${environment.apiUrl}/api/after_school_cares/${id}`).subscribe(() => this.getAllAfterSchoolCares());
+        this.http.delete<number>(`${environment.apiUrl}/api/management/afterSchoolCare/${id}`).subscribe(() => this.getAllAfterSchoolCares());
     }
     patchById(id: number, afterSchoolCare: Care){
-        this.http.patch<School>(`${environment.apiUrl}/api/after_school_cares/${id}`,afterSchoolCare).subscribe(() => this.getAllAfterSchoolCares());
+        this.http.patch<School>(`${environment.apiUrl}/api/management/afterSchoolCare/${id}`,afterSchoolCare).subscribe(() => this.getAllAfterSchoolCares());
     }
     open(care: Care,content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
