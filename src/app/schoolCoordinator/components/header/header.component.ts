@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthenticationService } from 'src/app/shared/services/authentication-service.service';
 
 @Component({
     selector: 'app-header',
@@ -9,7 +10,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
 
-    constructor( public router: Router) {
+    constructor( public router: Router, private auth: AuthenticationService) {
 
         this.router.events.subscribe(val => {
             if (
@@ -42,7 +43,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        this.auth.logout();
     }
 
 }
