@@ -18,7 +18,7 @@ export class UserPageComponent implements OnInit {
     ngOnInit() {
     }
     navigate(url: string) {
-        this.router.navigateByUrl(`user-page/${url}`);
+        this.router.navigateByUrl(`management/user-page/${url}`);
 
     }
 }
