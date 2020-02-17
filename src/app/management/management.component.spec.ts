@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LayoutComponent } from './layout.component';
-import { LayoutModule } from './layout.module';
+import { ManagementComponent } from './management.component';
+import { ManagementModule } from './management.module';
 
 describe('LayoutComponent', () => {
-  let component: LayoutComponent;
-  let fixture: ComponentFixture<LayoutComponent>;
+  let component: ManagementComponent;
+  let fixture: ComponentFixture<ManagementComponent>;
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
         imports: [
-          LayoutModule,
+          ManagementModule,
           RouterTestingModule,
         ]
       }).compileComponents();
@@ -20,7 +20,7 @@ describe('LayoutComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutComponent);
+    fixture = TestBed.createComponent(ManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
