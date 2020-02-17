@@ -1,30 +1,30 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a routerLink="/management/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a routerLink="/schoolcoordinator/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
             <span>Dashboard</span>
         </a>
-        <a [routerLink]="['/management/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>Charts</span>
         </a>
-        <a [routerLink]="['/management/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;
             <span>Tables</span>
         </a>
-        <a [routerLink]="['/management/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-edit"></i>&nbsp;
             <span>Forms</span>
         </a>
-        <a [routerLink]="['/management/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;
             <span>Bootstrap Element</span>
         </a>
-        <a [routerLink]="['/management/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>Bootstrap Grid</span>
         </a>
-        <a [routerLink]="['/management/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/schoolcoordinator/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-th-list"></i>&nbsp;
             <span>Component</span>
         </a>
@@ -56,22 +56,7 @@
                 </ul>
             </li>
         </div>
-        <a [routerLink]="['/management/user-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-users"></i>&nbsp;
-            <span>Benutzerverwaltung</span>
-        </a>
-        <a [routerLink]="['/management/school-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa  fa-graduation-cap"></i>&nbsp;
-            <span>Schulenverwaltung</span>
-        </a>
-        <a [routerLink]="['/management/care-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-table"></i>&nbsp;
-            <span>Betreungsangebote</span>
-        </a>
-        <a [routerLink]="['/management/attendance-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-bar-chart"></i>&nbsp;
-            <span>Anwesenheitslisten</span>
-        </a>
+
 
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">

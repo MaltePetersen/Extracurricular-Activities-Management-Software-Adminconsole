@@ -15,11 +15,6 @@ const routes: Routes = [
             { path: 'bs-element', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
             { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
-            { path: 'user-page', loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule) },
-            { path: 'school-page', loadChildren: () => import('./school-page/school-page.module').then(m => m.SchoolPageModule) },
-            { path: 'care-page', loadChildren: () => import('./care-page/care-page.module').then(m => m.CarePageModule) },
-            { path: 'attendance-page', loadChildren: () => import('./attendace-page/attendance-page.module').then(m => m.AttendancePageModule) }
-
         ]
     }
 ];
