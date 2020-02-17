@@ -25,14 +25,15 @@ export class CarePageComponent implements OnInit {
 
     ngOnInit() {
         this.getAllAfterSchoolCares();
-        this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((a) => this.schools = a);
+       // this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((a) => this.schools = a);
     }
     onSubmit() {
         console.log('Backend functionality missing');
     }
     getAllAfterSchoolCares() {
-        this.http.get<Care[]>(`${environment.apiUrl}/api/management/afterSchoolCare`).subscribe((afterSchoolCares) => this.afterSchoolCares = afterSchoolCares);
-
+        this.http.get(`${environment.apiUrl}/api/management/afterSchoolCare`).subscribe((afterSchoolCares) => {
+          console.log(afterSchoolCares); });
+        
     }
     deleteById(id: number) {
         this.http.delete<number>(`${environment.apiUrl}/api/management/afterSchoolCare/${id}`).subscribe(() => this.getAllAfterSchoolCares());

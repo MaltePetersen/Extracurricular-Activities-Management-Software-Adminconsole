@@ -34,11 +34,13 @@ export class AuthenticationService {
     return this.http.get<string[]>(`${environment.apiUrl}/user/login`, httpOptions)
       .pipe(map(authorities => {
         if (authorities.includes('ROLE_MANAGEMENT')) {
+          user.setRole('ROLE_MANAGEMENT');
           this.currentUserSubject.next(user);
           localStorage.setItem('isLoggedin', JSON.stringify(user));
           return true;
         }
         if (authorities.includes('ROLE_SCHOOLCOORDINATOR')) {
+          user.setRole('ROLE_SCHOOLCOORDINATOR');
           this.currentUserSubject.next(user);
           localStorage.setItem('isLoggedin', JSON.stringify(user));
           return true;

@@ -28,7 +28,7 @@ export class SchoolPageComponent implements OnInit {
         this.http.post<SchoolDTO>(`${environment.apiUrl}/api/schools`, this.model).subscribe(() => this.getAllSchools());
     }
     getAllSchools() {
-        this.http.get<School[]>(`${environment.apiUrl}/api/schools`).subscribe((schools) => this.schools = schools);
+        this.http.get<School[]>(`${environment.apiUrl}/api/management/schools`).subscribe((schools) => this.schools = schools);
     }
     deleteSchoolById(id: number){
         this.http.delete<number>(`${environment.apiUrl}/api/schools/${id}`).subscribe(() => this.getAllSchools());

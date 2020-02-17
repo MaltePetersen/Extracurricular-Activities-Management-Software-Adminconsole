@@ -2,6 +2,7 @@ export class ManagementDTO {
     name: string;
     password: string;
     authData?: string;
+    role?: string;
     constructor(name: string, password: string, authData: string) {
         this.name = name;
         this.password = password;
@@ -10,5 +11,8 @@ export class ManagementDTO {
     }
     setAuthData(authData: string) {
         this.authData = authData;
+    }
+    setRole(role: string) {
+        this.role = role;
     }
 }
