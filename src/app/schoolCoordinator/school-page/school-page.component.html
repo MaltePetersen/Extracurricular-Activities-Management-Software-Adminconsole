@@ -1,0 +1,132 @@
+<div [@routerTransition]>
+
+    <app-page-header [heading]="'Schulenverwaltung'" [icon]="'fa-graduation-cap'"></app-page-header>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="container">
+                <h1>Neue Schule hinzufügen</h1>
+
+                <form #schoolForm="ngForm" (ngSubmit)="onSubmit(); schoolForm.reset()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="model.name" required
+                            #name="ngModel">
+                        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            Schulname wird benötigt
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Addresse</label>
+                        <input type="text" class="form-control" name="address" [(ngModel)]="model.address" id="address"
+                            required #address="ngModel">
+                        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                            Addresse wird benötigt
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" [(ngModel)]="model.email" id="email"
+                            required #email="ngModel">
+                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                            Email wird benötigt
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Telefonnummer</label>
+                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="model.phoneNumber"
+                            id="phoneNumber" required #phoneNumber="ngModel">
+                        <div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert alert-danger">
+                            Telefonnummer wird benötigt
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" [disabled]="!schoolForm.form.valid">Submit</button>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Schule</th>
+                        <th scope="col">Addresse</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefonnummer</th>
+                        <th scope="col">Ändern</th>
+                        <th scope="col">Löschen</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let school of schools">
+                        <td>
+                            {{ school.id }}
+                        </td>
+                        <td>{{ school.name }}</td>
+                        <td>{{ school.address }}</td>
+                        <td>{{ school.email }}</td>
+                        <td>{{ school.phoneNumber }}</td>
+                        <td><button class="btn btn-warning" (click)="open(school,content)">Ändern</button></td>
+                        <td><button class="btn btn-danger" (click)="deleteSchoolById(school.id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title" id="modal-basic-title">Schule ändern</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                        <div class="container">                
+                                <form #modalForm="ngForm" (ngSubmit)="modal.close('Save click')">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="modalSchool.name" required
+                                            #name="ngModel">
+                                        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                                            Schulname wird benötigt
+                                        </div>
+                                    </div>
+                
+                                    <div class="form-group">
+                                        <label for="address">Addresse</label>
+                                        <input type="text" class="form-control" name="address" [(ngModel)]="modalSchool.address" id="address"
+                                            required #address="ngModel">
+                                        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                                            Addresse wird benötigt
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" name="email" [(ngModel)]="modalSchool.email" id="email"
+                                            required #email="ngModel">
+                                        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                                            Email wird benötigt
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phoneNumber">Telefonnummer</label>
+                                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="modalSchool.phoneNumber"
+                                            id="phoneNumber" required #phoneNumber="ngModel">
+                                        <div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert alert-danger">
+                                            Telefonnummer wird benötigt
+                                        </div>
+                                    </div>
+                
+                                    <button type="submit" class="btn btn-success" [disabled]="!modalForm.form.valid">Submit</button>
+                
+                                </form>
+                            </div>
+                </div>
+              </ng-template>
+              
+              
+              
+    </div>

@@ -9,6 +9,10 @@ const routes: Routes = [
     data: {
       role: 'ROLE_MANAGEMENT'
     }},
+    { path: 'schoolcoordinator', loadChildren: () => import('./schoolCoordinator/SchoolCoordinator.module').then(m => m.SchoolCoordinatorModule), canActivate: [AuthGuard]   ,
+    data: {
+      role: 'ROLE_SCHOOLCOORDINATOR'
+    }},
     { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) ,
     canActivate: [AuthGuard],
     data: {

@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
             return this.router.parseUrl('/management');
           }
           else if(user.role === 'ROLE_SCHOOLCOORDINATOR'){
-            return this.router.parseUrl('/parent/erziehungsberechtigte-dashboard');
+            return this.router.parseUrl('/schoolcoordinator');
           }
         }    
 }
