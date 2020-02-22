@@ -10,6 +10,8 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 import { AfterSchoolCareDTO } from '../models/after-school-care-dto';
 import { AttendanceDTO } from '../models/attendance-dto';
 import { UserDTO } from '../models/user-dto';
+import { SchoolDTO } from '../models/school-dto';
+import { School } from '../models/school';
 
 /**
  * Management Controller
@@ -19,6 +21,7 @@ import { UserDTO } from '../models/user-dto';
 })
 class ManagementControllerService extends __BaseService {
   static readonly getAllAfterSchoolCareServicesUsingGETPath = '/api/management/afterSchoolCare';
+  static readonly addAfterSchoolCareUsingPOSTPath = '/api/management/afterSchoolCare';
   static readonly geAfterSchoolCareByIdUsingGETPath = '/api/management/afterSchoolCare/{id}';
   static readonly deleteAfterSchoolCareUsingDELETE1Path = '/api/management/afterSchoolCare/{id}';
   static readonly patchAfterSchoolCareUsingPATCHPath = '/api/management/afterSchoolCare/{id}';
@@ -26,10 +29,16 @@ class ManagementControllerService extends __BaseService {
   static readonly deleteAttendanceListByIdUsingDELETEPath = '/api/management/attendanceList/{id}';
   static readonly patchAttendanceListByIdUsingPATCHPath = '/api/management/attendanceList/{id}';
   static readonly getAllAttendanceListsUsingGETPath = '/api/management/attendanceLists';
+  static readonly getAverageParticipantsListUsingGETPath = '/api/management/averageList';
   static readonly getAttendanceListUsingGETPath = '/api/management/list';
   static readonly allNotEnabledUserUsingGETPath = '/api/management/not_enabled_users';
   static readonly getNumberOfParticipantsUsingGETPath = '/api/management/number_of_participants';
   static readonly registerUsingPOSTPath = '/api/management/register';
+  static readonly createSchoolUsingPOST1Path = '/api/management/school';
+  static readonly getSchoolUsingGET1Path = '/api/management/school/{id}';
+  static readonly deleteSchoolUsingDELETE1Path = '/api/management/school/{id}';
+  static readonly changeSchoolUsingPATCH1Path = '/api/management/school/{id}';
+  static readonly getSchoolsUsingGET1Path = '/api/management/schools';
   static readonly getAllUsersUsingGETPath = '/api/management/users';
 
   constructor(
@@ -69,6 +78,42 @@ class ManagementControllerService extends __BaseService {
   getAllAfterSchoolCareServicesUsingGET(): __Observable<Array<AfterSchoolCareDTO>> {
     return this.getAllAfterSchoolCareServicesUsingGETResponse().pipe(
       __map(_r => _r.body as Array<AfterSchoolCareDTO>)
+    );
+  }
+
+  /**
+   * @param afterSchoolCareDTO afterSchoolCareDTO
+   * @return OK
+   */
+  addAfterSchoolCareUsingPOSTResponse(afterSchoolCareDTO?: AfterSchoolCareDTO): __Observable<__StrictHttpResponse<string>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = afterSchoolCareDTO;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/api/management/afterSchoolCare`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'text'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<string>;
+      })
+    );
+  }
+  /**
+   * @param afterSchoolCareDTO afterSchoolCareDTO
+   * @return OK
+   */
+  addAfterSchoolCareUsingPOST(afterSchoolCareDTO?: AfterSchoolCareDTO): __Observable<string> {
+    return this.addAfterSchoolCareUsingPOSTResponse(afterSchoolCareDTO).pipe(
+      __map(_r => _r.body as string)
     );
   }
 
@@ -362,6 +407,39 @@ class ManagementControllerService extends __BaseService {
   getAllAttendanceListsUsingGET(): __Observable<Array<AttendanceDTO>> {
     return this.getAllAttendanceListsUsingGETResponse().pipe(
       __map(_r => _r.body as Array<AttendanceDTO>)
+    );
+  }
+
+  /**
+   * @return OK
+   */
+  getAverageParticipantsListUsingGETResponse(): __Observable<__StrictHttpResponse<string>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/management/averageList`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'text'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<string>;
+      })
+    );
+  }
+  /**
+   * @return OK
+   */
+  getAverageParticipantsListUsingGET(): __Observable<string> {
+    return this.getAverageParticipantsListUsingGETResponse().pipe(
+      __map(_r => _r.body as string)
     );
   }
 
@@ -712,6 +790,192 @@ class ManagementControllerService extends __BaseService {
   }
 
   /**
+   * @param newSchool newSchool
+   * @return Created
+   */
+  createSchoolUsingPOST1Response(newSchool: School): __Observable<__StrictHttpResponse<SchoolDTO>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = newSchool;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/api/management/school`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<SchoolDTO>;
+      })
+    );
+  }
+  /**
+   * @param newSchool newSchool
+   * @return Created
+   */
+  createSchoolUsingPOST1(newSchool: School): __Observable<SchoolDTO> {
+    return this.createSchoolUsingPOST1Response(newSchool).pipe(
+      __map(_r => _r.body as SchoolDTO)
+    );
+  }
+
+  /**
+   * @param id id
+   * @return OK
+   */
+  getSchoolUsingGET1Response(id: number): __Observable<__StrictHttpResponse<SchoolDTO>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/management/school/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<SchoolDTO>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   * @return OK
+   */
+  getSchoolUsingGET1(id: number): __Observable<SchoolDTO> {
+    return this.getSchoolUsingGET1Response(id).pipe(
+      __map(_r => _r.body as SchoolDTO)
+    );
+  }
+
+  /**
+   * @param id id
+   */
+  deleteSchoolUsingDELETE1Response(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'DELETE',
+      this.rootUrl + `/api/management/school/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   */
+  deleteSchoolUsingDELETE1(id: number): __Observable<null> {
+    return this.deleteSchoolUsingDELETE1Response(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * @param params The `ManagementControllerService.ChangeSchoolUsingPATCH1Params` containing the following parameters:
+   *
+   * - `newSchool`: newSchool
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  changeSchoolUsingPATCH1Response(params: ManagementControllerService.ChangeSchoolUsingPATCH1Params): __Observable<__StrictHttpResponse<SchoolDTO>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = params.newSchool;
+
+    let req = new HttpRequest<any>(
+      'PATCH',
+      this.rootUrl + `/api/management/school/${params.id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<SchoolDTO>;
+      })
+    );
+  }
+  /**
+   * @param params The `ManagementControllerService.ChangeSchoolUsingPATCH1Params` containing the following parameters:
+   *
+   * - `newSchool`: newSchool
+   *
+   * - `id`: id
+   *
+   * @return OK
+   */
+  changeSchoolUsingPATCH1(params: ManagementControllerService.ChangeSchoolUsingPATCH1Params): __Observable<SchoolDTO> {
+    return this.changeSchoolUsingPATCH1Response(params).pipe(
+      __map(_r => _r.body as SchoolDTO)
+    );
+  }
+
+  /**
+   * @return OK
+   */
+  getSchoolsUsingGET1Response(): __Observable<__StrictHttpResponse<Array<SchoolDTO>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/management/schools`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<SchoolDTO>>;
+      })
+    );
+  }
+  /**
+   * @return OK
+   */
+  getSchoolsUsingGET1(): __Observable<Array<SchoolDTO>> {
+    return this.getSchoolsUsingGET1Response().pipe(
+      __map(_r => _r.body as Array<SchoolDTO>)
+    );
+  }
+
+  /**
    * @param type type
    * @return OK
    */
@@ -864,6 +1128,22 @@ module ManagementControllerService {
     allErrors0Codes?: Array<string>;
     allErrors0Code?: string;
     allErrors0Arguments?: Array<{}>;
+  }
+
+  /**
+   * Parameters for changeSchoolUsingPATCH1
+   */
+  export interface ChangeSchoolUsingPATCH1Params {
+
+    /**
+     * newSchool
+     */
+    newSchool: SchoolDTO;
+
+    /**
+     * id
+     */
+    id: number;
   }
 }
 

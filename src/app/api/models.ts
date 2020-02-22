@@ -16,3 +16,4 @@ export { SimpleUserDTO } from './models/simple-user-dto';
 export { User } from './models/user';
 export { UserDTO } from './models/user-dto';
 export { VerificationToken } from './models/verification-token';
+export { WorkingGroupDTO } from './models/working-group-dto';
