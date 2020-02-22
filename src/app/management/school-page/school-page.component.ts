@@ -25,16 +25,16 @@ export class SchoolPageComponent implements OnInit {
         this.getAllSchools();
     }
     onSubmit() {
-        this.http.post<SchoolDTO>(`${environment.apiUrl}/api/schools`, this.model).subscribe(() => this.getAllSchools());
+        this.http.post<SchoolDTO>(`${environment.apiUrl}/api/management/school`, this.model).subscribe(() => this.getAllSchools());
     }
     getAllSchools() {
         this.http.get<School[]>(`${environment.apiUrl}/api/management/schools`).subscribe((schools) => this.schools = schools);
     }
     deleteSchoolById(id: number){
-        this.http.delete<number>(`${environment.apiUrl}/api/schools/${id}`).subscribe(() => this.getAllSchools());
+        this.http.delete<number>(`${environment.apiUrl}/api/management/school/${id}`).subscribe(() => this.getAllSchools());
     }
     patchSchoolById(id: number, school: School){
-        this.http.patch<School>(`${environment.apiUrl}/api/schools/${id}`,school).subscribe(() => this.getAllSchools());
+        this.http.patch<School>(`${environment.apiUrl}/api/management/school/${id}`,school).subscribe(() => this.getAllSchools());
     }
     open(school: School,content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
