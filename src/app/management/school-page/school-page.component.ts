@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { School } from 'src/app/model/School.model';
-import { SchoolDTO } from 'src/app/model/SchoolDTO.model';
+import {  ImplSchool } from 'src/app/model/School.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { SchoolDTO } from 'src/app/api/models';
+import { ImplSchoolDTO } from 'src/app/model/ImplSchoolDTO.model';
+import { ManagementControllerService } from 'src/app/api/services';
 
 @Component({
     selector: 'app-school-page',
@@ -15,32 +17,36 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 })
 export class SchoolPageComponent implements OnInit {
-    constructor(public http: HttpClient, private modalService: NgbModal) { }
-    schools: School[];
-    model: SchoolDTO = new SchoolDTO('', '', '', '');
+    constructor(public http: HttpClient, private modalService: NgbModal, private managementService: ManagementControllerService) { }
+    schools: ImplSchool[];
+    model: SchoolDTO = new ImplSchoolDTO('', '', '', '');
     closeResult: string;
-    modalSchool: SchoolDTO = new SchoolDTO('','','','');
+    modalSchool: SchoolDTO = new ImplSchoolDTO('','','','');
 
     ngOnInit() {
         this.getAllSchools();
+        this.managementService.getSchoolsUsingGET1().subscribe((a)=> console.log(a));
     }
     onSubmit() {
-        this.http.post<SchoolDTO>(`${environment.apiUrl}/api/management/school`, this.model).subscribe(() => this.getAllSchools());
+      this.managementService.createSchoolUsingPOST1(this.model).subscribe(()=> this.getAllSchools());
     }
     getAllSchools() {
-        this.http.get<School[]>(`${environment.apiUrl}/api/management/schools`).subscribe((schools) => this.schools = schools);
+        this.managementService.getSchoolsUsingGET1().subscribe((schools) => this.schools = schools);
     }
     deleteSchoolById(id: number){
-        this.http.delete<number>(`${environment.apiUrl}/api/management/school/${id}`).subscribe(() => this.getAllSchools());
+      this.managementService.deleteSchoolUsingDELETE1(id).subscribe(()=> this.getAllSchools());
     }
-    patchSchoolById(id: number, school: School){
-        this.http.patch<School>(`${environment.apiUrl}/api/management/school/${id}`,school).subscribe(() => this.getAllSchools());
+    patchSchoolById(id: number, school: ImplSchool){
+      let params  = { 
+        newSchool: school,
+        id: id}
+      this.managementService.changeSchoolUsingPATCH1(params).subscribe(()=>this.getAllSchools()); 
     }
-    open(school: School,content) {
+    open(school: ImplSchool,content) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
           this.closeResult = `Closed with: ${result}`;
-          this.patchSchoolById(school.id,new School(school.id, this.modalSchool.name,this.modalSchool.address,this.modalSchool.email, this.modalSchool.phoneNumber));
-          this.modalSchool = new SchoolDTO('','','','');
+          this.patchSchoolById(school.id,new ImplSchool(school.id, this.modalSchool.name,this.modalSchool.address,this.modalSchool.email, this.modalSchool.phoneNumber));
+          this.modalSchool = new ImplSchoolDTO('','','','');
         }, (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
