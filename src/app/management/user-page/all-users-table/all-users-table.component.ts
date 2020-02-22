@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/model/User.model';
 import { environment } from 'src/environments/environment';
-import { UserDTO } from 'src/app/model/UserDTO.model';
+import { ManagementControllerService } from 'src/app/api/services';
+import { UserDTO } from 'src/app/api/models';
 
 @Component({
   selector: 'app-all-users-table',
@@ -11,12 +12,11 @@ import { UserDTO } from 'src/app/model/UserDTO.model';
 })
 export class AllUsersTableComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
-  users: UserDTO[] = [];
+  constructor(private http: HttpClient, private managementService: ManagementControllerService) { }
+  users: Array<UserDTO> = [];
 
   ngOnInit() {
-    this.http.get<UserDTO[]>(`${environment.apiUrl}/api/management/users`).subscribe((users => this.users = users));
-
+    this.managementService.getAllUsersUsingGET().subscribe(users => this.users = users);
   }
 
 }
