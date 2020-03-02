@@ -3,14 +3,11 @@
 
   <form #userForm="ngForm" (ngSubmit)="onSubmit(); userForm.reset()">
     <div class="form-group">
-      <label for="usertype">UserType</label>
-      <input type="text" class="form-control" name="usertype" id="usertype" [(ngModel)]="model.userType" required
-        #usertype="ngModel">
-      <div [hidden]="usertype.valid || usertype.pristine" class="alert alert-danger">
-        UserType wird benötigt
-      </div>
-    </div>
-
+      <label  for="usertype"  >UserType</label>
+      <select id="options" class="form-control" name="usertype" [(ngModel)]="model.userType"  >
+        <option *ngFor="let item of options">{{item}}</option>
+          </select>
+  </div>
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" class="form-control" name="username" [(ngModel)]="model.username" id="username" required
@@ -84,12 +81,10 @@
     </div>
     <div class="form-group">
       <label for="isSchoolCoordinator">isSchoolCoordinator</label>
-      <input type="text" class="form-control" name="isSchoolCoordinator" [(ngModel)]="model.isSchoolCoordinator"
+      <input type="checkbox" class="form-control" name="isSchoolCoordinator" [(ngModel)]="model.isSchoolCoordinator"
         id="isSchoolCoordinator" required #isSchoolCoordinator="ngModel">
-      <div [hidden]="isSchoolCoordinator.valid || isSchoolCoordinator.pristine" class="alert alert-danger">
-        isSchoolCoordinator wird benötigt
-      </div>
     </div>
+    <p>{{model.isSchoolCoordinator}}</p>
     <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
 
   </form>

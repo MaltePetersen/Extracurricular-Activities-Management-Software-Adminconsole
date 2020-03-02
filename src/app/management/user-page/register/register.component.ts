@@ -10,11 +10,10 @@ import { ManagementControllerService } from 'src/app/api/services';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  options: string[] = ["TEACHER", "PARENT","SCHOOL-COORDINATOR", "EMPLOYEE", "MANGEMENT", "CHILD"];
   constructor(private http: HttpClient, private managementService: ManagementControllerService) { }
-  model: UserDTO = new UserDTO('TEACHER', '', '', '','', '', '', '', '', '', false);
+  model: UserDTO = new UserDTO('', '', '', '','', '', '', '', '', '', false);
   ngOnInit() {
-
 
   }
  createUser(){
@@ -25,6 +24,7 @@ export class RegisterComponent implements OnInit {
 
  }
  onSubmit(){
+   console.log(this.model)
    this.createUser();
  }
 
