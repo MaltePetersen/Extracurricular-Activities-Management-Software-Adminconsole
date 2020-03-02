@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpClient, private managementService: ManagementControllerService) { }
   model: UserDTO = new UserDTO('', '', '', '','', '', '', '', '', '', false);
   ngOnInit() {
-
   }
  createUser(){
    let params = {

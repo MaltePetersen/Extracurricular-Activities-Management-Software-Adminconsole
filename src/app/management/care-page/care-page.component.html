@@ -7,7 +7,7 @@
                             <form #careForm="ngForm" (ngSubmit)="onSubmit(); careForm.reset()">
                                 <div class="form-group">
                                     <label for="startTime">Anfangszeit</label>
-                                    <input type="number" class="form-control" name="startTime" id="startTime" [(ngModel)]="model.startTime" required
+                                    <input type="datetime-local" class="form-control" name="startTime" id="startTime" [(ngModel)]="model.startTime" required
                                         #startTime="ngModel">
                                     <div [hidden]="startTime.valid || startTime.pristine" class="alert alert-danger">
                                         Anfangszeit wird benötigt
@@ -16,7 +16,7 @@
             
                                 <div class="form-group">
                                     <label for="endTime">EndZeit</label>
-                                    <input type="number" class="form-control" name="endTime" [(ngModel)]="model.endTime" id="endTime"
+                                    <input type="datetime-local" class="form-control" name="endTime" [(ngModel)]="model.endTime" id="endTime"
                                         required #endTime="ngModel">
                                     <div [hidden]="endTime.valid || endTime.pristine" class="alert alert-danger">
                                             EndZeit wird benötigt
@@ -32,11 +32,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="employee">Betreuer</label>
-                                    <input type="text" class="form-control" name="employee" [(ngModel)]="model.employee"
-                                        id="employee" required #employee="ngModel">
-                                    <div [hidden]="employee.valid || employee.pristine" class="alert alert-danger">
-                                            Betreuer wird benötigt
-                                    </div>
+                                        <select id="options" class="form-control" name="employee" [(ngModel)]="model.owner" id="employee" required #employee="ngModel" >
+                                            <option *ngFor="let item of possibleOwners">{{item.username}}</option>
+                                              </select>
+                        
                                 </div>
             
                                 <button type="submit" class="btn btn-success" [disabled]="!careForm.form.valid">Submit</button>
@@ -65,8 +64,8 @@
                 </td>
                 <td>{{ afterSchoolCare.startTime  }}</td>
                 <td>{{ afterSchoolCare.endTime }}</td>
-                <td>{{afterSchoolCare.participatingSchool.name}}</td>
-                <td> {{ afterSchoolCare.employee }}</td>
+                <td>{{afterSchoolCare.participatingSchool}}</td>
+                <td> {{ afterSchoolCare.owner }}</td>
                 <td><button class="btn btn-warning" (click)="open(afterSchoolCare,content)">Ändern</button></td>
                 <td><button class="btn btn-danger" (click)="deleteById(afterSchoolCare.id)">Löschen</button></td>
 
@@ -87,7 +86,7 @@
                         <form #modalForm="ngForm" (ngSubmit)="modal.close('Save click')">
                                         <div class="form-group">
                                             <label for="startTime">Anfangszeit</label>
-                                            <input type="number" class="form-control" name="startTime" id="startTime" [(ngModel)]="modalCare.startTime" required
+                                            <input type="datetime-local" class="form-control" name="startTime" id="startTime" [(ngModel)]="modalCare.startTime" required
                                                 #startTime="ngModel">
                                             <div [hidden]="startTime.valid || startTime.pristine" class="alert alert-danger">
                                                 Anfangszeit wird benötigt
@@ -96,7 +95,7 @@
                     
                                         <div class="form-group">
                                             <label for="endTime">EndZeit</label>
-                                            <input type="number" class="form-control" name="endTime" [(ngModel)]="modalCare.endTime" id="endTime"
+                                            <input type="datetime-local" class="form-control" name="endTime" [(ngModel)]="modalCare.endTime" id="endTime"
                                                 required #endTime="ngModel">
                                             <div [hidden]="endTime.valid || endTime.pristine" class="alert alert-danger">
                                                     EndZeit wird benötigt
@@ -104,7 +103,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="school">Schule</label>
-                                            <input type="text" class="form-control" name="school" [(ngModel)]="modalCare.school" id="school"
+                                            <input type="text" class="form-control" name="school" [(ngModel)]="modalCare.participatingSchool" id="school"
                                                 required #school="ngModel">
                                             <div [hidden]="school.valid || school.pristine" class="alert alert-danger">
                                                 Schule wird benötigt
@@ -112,11 +111,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="employee">Betreuer</label>
-                                            <input type="text" class="form-control" name="employee" [(ngModel)]="modalCare.employee"
-                                                id="employee" required #employee="ngModel">
-                                            <div [hidden]="employee.valid || employee.pristine" class="alert alert-danger">
-                                                    Betreuer wird benötigt
-                                            </div>
+                                                <select id="options" class="form-control" name="employee" [(ngModel)]="model.owner" id="employee" required #employee="ngModel" >
+                                                    <option *ngFor="let item of possibleOwners">{{item.username}}</option>
+                                                      </select>
                                         </div>
         
                             <button type="submit" class="btn btn-success" [disabled]="!modalForm.form.valid">Submit</button>

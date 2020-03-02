@@ -5,9 +5,10 @@ import { environment } from 'src/environments/environment';
 import { ImplCare } from 'src/app/model/Care.model';
 import { ImplSchool } from 'src/app/model/School.model';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AfterSchoolCare, AfterSchoolCareDTO } from 'src/app/api/models';
+import { AfterSchoolCare, AfterSchoolCareDTO, SimpleUserDTO } from 'src/app/api/models';
 import { ImplCareDTO } from 'src/app/model/CareDTO.model';
 import { ManagementControllerService } from 'src/app/api/services';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-care-page',
@@ -21,19 +22,27 @@ export class CarePageComponent implements OnInit {
   constructor(public http: HttpClient, private modalService: NgbModal, private managementService: ManagementControllerService) { }
   afterSchoolCares: AfterSchoolCareDTO[];
   schools: ImplSchool[];
-  model = new ImplCareDTO(1, '124', '312', 1, null, false, '', null, 1);
+  model = new ImplCareDTO(1, '2020-03-02T12:15:44.177Z', '2020-03-02T12:15:44.177Z', 1, null, false, '', null, 1);
   closeResult: string;
-  modalCare: AfterSchoolCareDTO = new ImplCareDTO(1, '124', '312', 1, null, false, '', null, 1);
-
+  modalCare: AfterSchoolCareDTO = new ImplCareDTO(1, '2020-03-02T12:15:44.177Z', '2020-03-02T12:15:44.177Z', 1, null, false, '', null, 1);
+  possibleOwners: SimpleUserDTO[] = [];
+  //TODO: Wie muss die Abfrage aussehen, damit ich AfterschoolCares erstellen kann
   ngOnInit() {
     this.getAllAfterSchoolCares();
     this.managementService.getSchoolsUsingGET1().subscribe(schools => this.schools = schools);
+    this.managementService.getAllUsersUsingGET().subscribe( users =>    this.possibleOwners = users);
+    this.managementService.addAfterSchoolCareUsingPOST(this.model).subscribe(() => this.getAllAfterSchoolCares())
+
   }
-  onSubmit(afterSchoolCareDTO: AfterSchoolCareDTO) {
-    this.managementService.addAfterSchoolCareUsingPOST(afterSchoolCareDTO).subscribe(() => this.getAllAfterSchoolCares())
+  onSubmit() {
+    
+    this.managementService.addAfterSchoolCareUsingPOST(this.model).subscribe(() => this.getAllAfterSchoolCares())
   }
   getAllAfterSchoolCares() {
-    this.managementService.getAllAfterSchoolCareServicesUsingGET().subscribe((afterSchoolCares) => this.afterSchoolCares = afterSchoolCares);
+    this.managementService.getAllAfterSchoolCareServicesUsingGET().subscribe((afterSchoolCares) => {
+      this.afterSchoolCares = afterSchoolCares;
+      console.log(this.afterSchoolCares)}
+    );
   }
   deleteById(id: number) {
     this.managementService.deleteAfterSchoolCareUsingDELETE1(id).subscribe(() => this.getAllAfterSchoolCares());
