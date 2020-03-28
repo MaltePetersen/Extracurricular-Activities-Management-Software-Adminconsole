@@ -42,7 +42,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/MaltePetersen/Extracurricular-Activities-Management-Software-Adminconsole/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
