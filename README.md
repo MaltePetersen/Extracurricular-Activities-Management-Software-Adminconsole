@@ -30,3 +30,22 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Authors
+
+* **Malte Petersen** - *Project Lead* - [MaltePetersen](https://github.com/MaltePetersen)
+* **Markus** - *Backend developer* - [Oberstrike](https://github.com/Oberstrike)
+* **Bendix** - *Backend developer* - [TaskPlays](https://github.com/TaskPlays)
+* **Timo** - *Backend developer* - [Sibo0](https://github.com/Sibo0)
+* **Hendrik** - *Frontend developer* - [PeterPan86](https://github.com/PeterPan86)
+* **Daniel Last** - *Frontend developer* - [DanielLast1997](https://github.com/DanielLast1997)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* DHSH
+* Fjoerde
+
