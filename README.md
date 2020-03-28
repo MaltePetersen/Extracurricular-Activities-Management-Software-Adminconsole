@@ -1,33 +1,7 @@
-# SB Admin rewritten in Angular8 and Bootstrap 4
+# Extracurricular Activities Management Software Adminconsole
 
-Simple Dashboard Admin App built using Angular 8 and Bootstrap 4
-
-This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v8.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular8 Theme.
-
-Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
-
-## [Demo](http://rawgit.com/start-angular/SB-Admin-BS4-Angular-6/master/dist/)
-
-## [SB Admin Material version](https://github.com/start-javascript/sb-admin-material)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
-
-### Introduction
-
-Provides fast, reliable and extensible starter for the development of Angular projects.
-
-`sb-admin-bs4-angular8` provides the following features:
-
-*   Developed using boostrap-v4.0.0
-*   angular-v8.0.0
-*   angular/cli-v8.0.0
-*   [ng-bootstrap-v4.0.0](https://github.com/ng-bootstrap/)
-*   [ngx-translate-v11.0.0](https://github.com/ngx-translate)
-*   Following the best practices.
-*   Ahead-of-Time compilation support.
-*   Official Angular i18n support.
-*   Production and development builds.
-*   Tree-Shaking production builds.
+Also Management and SchoolCoordinator functionality can be found in this Application.
+Sb-admin-bs4-angular8 was used as a template for this project.
 
 ### How to start
 
@@ -35,16 +9,9 @@ Provides fast, reliable and extensible starter for the development of Angular pr
 
 In order to start the project use:
 
-```bash
-$ git clone https://github.com/start-angular/SB-Admin-BS4-Angular-8.git
-$ cd SB-Admin-BS4-Angular-8
-# install the project's dependencies
-$ npm install
-# watches your files and uses livereload by default run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-$ npm start
-# prod build, will output the production application in `dist`
-# the produced code can be deployed (rsynced) to a remote server
-$ npm run build
+```
+npm install
+npm run
 ```
 
 ### Code scaffolding
